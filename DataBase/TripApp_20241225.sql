@@ -1,3 +1,22 @@
+drop table if exists `deposit`;
+drop table if exists `payment`;
+ drop table if exists `balance`;
+ drop table if exists `cost_recd`;
+drop table if exists `dst_record`;
+drop table if exists `dst_photo`;
+drop table if exists `dest`;
+drop table if exists `ORDER`;
+drop table if exists `notify`;
+ drop table if exists `poi_type`;
+drop table if exists `tur_fav`;
+drop table if exists `bag_list`;
+drop table if exists `product`;
+drop table if exists `notify_type`;
+drop table if exists `payment`;
+drop table if exists `poi`;
+drop table if exists `crew`;
+drop table if exists `sched`;
+drop table if exists `item`;
 drop table if exists `member`;
 CREATE TABLE  `member`(
   mem_no int AUTO_INCREMENT NOT NULL,
