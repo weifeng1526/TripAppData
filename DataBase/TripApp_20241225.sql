@@ -64,12 +64,13 @@ CREATE TABLE  tur_fav(
 drop table if exists `notify`;
 CREATE TABLE  notify(
   ntf_no int AUTO_INCREMENT NOT NULL,
-  nttp_no varchar(10) NOT NULL,
+  nttp_no int NOT NULL,
   ntf_sdr int NOT NULL,
   ntf_rcv int NOT NULL,
   ntf_msg varchar(200) DEFAULT NULL,
   ntf_time datetime DEFAULT NULL,
   ntf_read boolean DEFAULT NULL,
+  crew_no int NOT NULL,
   PRIMARY KEY (ntf_no)
 ) ENGINE InnoDB; 
 
@@ -116,6 +117,7 @@ CREATE TABLE  sched(
   sch_end date DEFAULT NULL,
   sch_cur varchar(10) not NULL,
   sch_pic mediumblob default null,
+  sch_last_edit datetime not null,
   PRIMARY KEY (sch_no)
 ) ENGINE InnoDB; 
 
@@ -143,6 +145,7 @@ CREATE TABLE crew(
   crew_peri tinyint DEFAULT NULL,
   crew_ide tinyint DEFAULT NULL,
   crew_name varchar(10) DEFAULT NULL,
+  crew_invited tinyint DEFAULT 0,
   PRIMARY KEY (crew_no)
 ) ENGINE InnoDB;
 
@@ -229,6 +232,9 @@ ADD CONSTRAINT notify_ntfsdr_FK FOREIGN KEY (ntf_sdr) REFERENCES member(mem_no);
 
 ALTER TABLE notify
 ADD CONSTRAINT notify_ntfrcv_FK FOREIGN KEY (ntf_rcv) REFERENCES member(mem_no);
+
+ALTER TABLE notify
+ADD CONSTRAINT notify_crewno_FK FOREIGN KEY (crew_no) REFERENCES crew(crew_no);
 -------------------------------------------------------------------------- 
 ALTER TABLE `ORDER`
 ADD CONSTRAINT ORDER_memno_FK FOREIGN KEY (mem_no) REFERENCES member(mem_no);
