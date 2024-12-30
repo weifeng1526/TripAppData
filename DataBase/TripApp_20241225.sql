@@ -116,8 +116,7 @@ CREATE TABLE  sched(
   sch_end date DEFAULT NULL,
   sch_cur varchar(10) not NULL,
   sch_pic mediumblob default null,
-  PRIMARY KEY (sch_no),
-  unique key UK_sched_cur(sch_cur)
+  PRIMARY KEY (sch_no)
 ) ENGINE InnoDB; 
 
 drop table if exists `dest`;
