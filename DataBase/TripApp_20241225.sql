@@ -15,15 +15,15 @@ CREATE TABLE  bag_list(
   bl_memno int NOT NULL,
   bl_itemno int NOT NULL,
   bl_schno int NOT NULL,
-  bl_ready boolean DEFAULT NULL,
-  PRIMARY KEY (bl_memno , bl_schno)
+  bl_ready boolean DEFAULT false,
+  PRIMARY KEY (bl_memno , bl_schno,bl_itemno)
 ) ENGINE InnoDB; 
 
 drop table if exists `item`;
 CREATE TABLE  item(
   item_no int AUTO_INCREMENT NOT NULL,
-  item_bel varchar(10) DEFAULT NULL,
-  item_type tinyint DEFAULT NULL,
+  item_name varchar(10) NOT NULL,
+  item_type tinyint DEFAULT 0,
   PRIMARY KEY (item_no)
 ) ENGINE InnoDB; 
 
@@ -57,7 +57,7 @@ CREATE TABLE  tur_fav(
  
  drop table if exists `poi_type`;
  CREATE TABLE poi_type(
-  pt_no int AUTO_INCREMENT NOT NULL,
+  pt_no int NOT NULL,
   pt_type varchar(10)  NOT NULL
 ) ENGINE InnoDB; 
 ---------------------------------------------------------
