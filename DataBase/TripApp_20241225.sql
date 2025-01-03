@@ -34,7 +34,7 @@ CREATE TABLE  bag_list(
   bl_memno int NOT NULL,
   bl_itemno int NOT NULL,
   bl_schno int NOT NULL,
-  bl_ready boolean DEFAULT false,
+  bl_ready boolean NOT NULL DEFAULT false,
   PRIMARY KEY (bl_memno , bl_schno,bl_itemno)
 ) ENGINE InnoDB; 
 
@@ -42,7 +42,7 @@ drop table if exists `item`;
 CREATE TABLE  item(
   item_no int AUTO_INCREMENT NOT NULL,
   item_name varchar(10) NOT NULL,
-  item_type tinyint DEFAULT 0,
+  item_type tinyint NOT NULL DEFAULT 0,
   PRIMARY KEY (item_no)
 ) ENGINE InnoDB; 
 
