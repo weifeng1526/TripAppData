@@ -152,8 +152,8 @@ create table dest(
   dst_pic mediumblob DEFAULT NULL,
   dst_dep varchar(500) DEFAULT NULL,
   dst_date date DEFAULT NULL,
-  dst_start datetime DEFAULT NULL,
-  dst_end datetime DEFAULT NULL,
+  dst_start time DEFAULT NULL,
+  dst_end time DEFAULT NULL,
   dst_inr time DEFAULT NULL,
   PRIMARY KEY (dst_no)
 ) ENGINE InnoDB; 
