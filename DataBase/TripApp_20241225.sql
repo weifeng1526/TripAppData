@@ -199,7 +199,7 @@ CREATE TABLE dst_record(
   cr_cost_time datetime not NULL,
   cr_create_time datetime not NULL,
   cr_cost_loc varchar(20) DEFAULT NULL,
-  cr_cost_pex decimal(10,2) not null,
+  cr_cost_pex boolean not null default false,
   cr_cur varchar(10) not null,
   PRIMARY KEY (cr_cost_no),
   unique key UK_costrecd_createtime(cr_create_time)
@@ -207,11 +207,10 @@ CREATE TABLE dst_record(
  
  drop table if exists `balance`;
  CREATE TABLE  balance(
-  cost_no int AUTO_INCREMENT NOT NULL,
+  cost_no int NOT NULL,
   sch_no int NOT NULL,
   mem_no int DEFAULT NULL,
-  cr_cost_splip DECIMAL(10,2) not NULL,
-  PRIMARY KEY (cost_no)
+  cr_cost_splip DECIMAL(10,2) not NULL
 ) ENGINE InnoDB; 
 
 drop table if exists `payment`;
@@ -224,8 +223,8 @@ CREATE TABLE  payment(
 
 drop table if exists `deposit`;
 CREATE TABLE  deposit(
+  dp_no int auto_increment NOT NULL,
   sch_no int NOT NULL,
-  dp_no int NOT NULL,
   dp_record decimal(10,2) not NULL,
   PRIMARY KEY (dp_no)
 ) ENGINE InnoDB; 
@@ -288,8 +287,8 @@ ADD CONSTRAINT dstrecord_dstno_FK FOREIGN KEY (dst_no) REFERENCES dest(dst_no);
 ALTER TABLE cost_recd
 ADD CONSTRAINT costrecd_schno_FK FOREIGN KEY (sch_no) REFERENCES sched (sch_no);
 
-ALTER TABLE cost_recd
-ADD CONSTRAINT costrecd_dstno_FK FOREIGN KEY (dst_no) REFERENCES dest (dst_no);
+-- ALTER TABLE cost_recd
+-- ADD CONSTRAINT costrecd_dstno_FK FOREIGN KEY (dst_no) REFERENCES dest (dst_no);
 
 ALTER TABLE balance
 ADD CONSTRAINT balance_costno_FK FOREIGN KEY (cost_no) REFERENCES cost_recd (cr_cost_no);
@@ -317,6 +316,9 @@ INSERT INTO member (mem_email, mem_name, mem_pw, mem_sta) VALUES
 ('user5@tip102.com', 'user5', '555555', 1),
 ('user6@tip102.com', 'user6', '666666', 1),
 ('user7@tip102.com', 'user7', '777777', 1);
+
+INSERT INTO member (mem_no, mem_email, mem_name, mem_pw, mem_sta) VALUES
+(-1,'userNO@tip102.com', 'userNo', 'nnnnnn', 0);
 
 INSERT INTO poi (poi_no, poi_add, poi_name, poi_lng, poi_lat, poi_lab, poi_pic, poi_rat, poi_hno, poi_phon, poi_bs, poi_nbs, poi_bd, poi_like)
 VALUES
@@ -447,3 +449,60 @@ INSERT INTO bag_list (bl_memno, bl_schno, bl_itemno, bl_ready) VALUES
 (1, 1, 28, false),
 (1, 1, 9, true),
 (1, 1, 34, false);
+
+INSERT INTO cost_recd (
+    cr_cost_no, sch_no, dst_no, cr_cost_type, cr_cost_item, cr_cost_price, cr_paid_by, cr_cost_time, cr_create_time, cr_cost_loc, cr_cost_pex, cr_cur
+) VALUES
+    (1, 1, 1, 1, '午餐', 500, 1, '2023-11-20 12:00:00', '2023-11-20 12:01:00', '道頓堀', 0, 'TWD'),
+    (2, 1, 2, 2, '地鐵', 200, 2, '2023-11-20 14:00:00', '2023-11-20 14:01:00', '梅田', 1, 'TWD'),
+    (3, 1, 1, 3, '環球影城門票', 2500, 1, '2023-11-21 10:00:00', '2023-11-21 09:59:00', '環球影城', 0, 'TWD'),
+    (4, 1, 2, 4, '飯店住宿', 3000, 1, '2023-11-21 18:00:00', '2023-11-21 18:01:00', '難波', 1, 'TWD'),
+    (5, 1, 1, 5, '伴手禮', 1000, 1, '2023-11-22 15:00:00', '2023-11-22 15:01:00', '心齋橋', 0, 'TWD'),
+    (6, 2, 2, 6, '章魚燒', 300, 3, '2023-11-22 19:00:00', '2023-11-22 19:01:00', '道頓堀', 0, 'TWD'),
+    (7, 2, 1, 2, '電車', 150, 3, '2023-11-23 09:00:00', '2023-11-23 08:59:00', '天王寺', 1, 'TWD'),
+    (8, 2, 2, 4, '旅館住宿', 2500, 3, '2023-11-23 17:00:00', '2023-11-23 17:01:00', '新大阪', 0, 'TWD'),
+    (9, 2, 1, 1, '晚餐', 600, 4, '2023-11-24 18:00:00', '2023-11-24 18:01:00', '黑門市場', 1, 'TWD'),
+    (10, 2, 2, 5, '藥妝', 800, 5, '2023-11-24 20:00:00', '2023-11-24 20:01:00', '心齋橋', 0, 'TWD');
+
+INSERT INTO BALANCE (cost_no, sch_no, mem_no, cr_cost_splip) VALUES
+    (1, 1, 1, 500),
+    (1, 1, 2, 0),
+    (2, 1, 1, 0),
+    (2, 1, 2, 200),   
+    (3, 1, 1, 2500),
+    (3, 1, 2, 0), 
+    (4, 1, 1, 3000),
+    (4, 1, 2, 0), 
+    (5, 1, 1, 1000),
+    (5, 1, 2, 0),
+	(6, 2, 3, 300),
+    (6, 2, 4, 0),
+    (6, 2, 5, 0),
+    (7, 2, 3, 150),
+    (7, 2, 4, 0),
+    (7, 2, 5, 0),
+    (8, 2, 3, 2500),
+    (8, 2, 4, 0), 
+    (8, 2, 5, 0),
+    (9, 2, 3, 0),
+    (9, 2, 4, 600),
+    (9, 2, 5, 0),
+    (10, 2, 3, 0),
+    (10, 2, 4, 0),
+    (10, 2, 5, 800);
+    
+INSERT INTO PAYMENT (mem_no, sch_no, cr_total_sum) VALUES
+    (1, 1, 5500),
+    (2, 1, 1700),
+    (3, 2, 2950),
+    (4, 2, 600),
+    (5, 2, 800);
+    
+INSERT INTO DEPOSIT (sch_no, dp_no, dp_record) VALUES
+    (1, 1, 1000),
+    (1, 2, 2000),
+    (2, 3, 500),
+    (2, 4, 10000),
+    (2, 5,  2000);
+
+
