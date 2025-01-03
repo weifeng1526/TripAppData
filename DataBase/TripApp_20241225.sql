@@ -1,3 +1,5 @@
+-- CREATE SCHEMA tripapp ;
+
 drop table if exists `deposit`;
 drop table if exists `payment`;
  drop table if exists `balance`;
@@ -32,19 +34,19 @@ CREATE TABLE  `member`(
 drop table if exists `bag_list`;
 CREATE TABLE  bag_list(
   bl_memno int NOT NULL,
-  bl_itemno int NOT NULL,
   bl_schno int NOT NULL,
-  bl_ready boolean NOT NULL DEFAULT false,
-  PRIMARY KEY (bl_memno , bl_schno,bl_itemno)
-) ENGINE InnoDB; 
+  bl_itemno int NOT NULL,
+  bl_ready boolean DEFAULT false,
+  PRIMARY KEY (bl_memno , bl_schno, bl_itemno)
+) ENGINE InnoDB;
 
 drop table if exists `item`;
 CREATE TABLE  item(
   item_no int AUTO_INCREMENT NOT NULL,
   item_name varchar(10) NOT NULL,
-  item_type tinyint NOT NULL DEFAULT 0,
+  item_type tinyint DEFAULT 0,
   PRIMARY KEY (item_no)
-) ENGINE InnoDB; 
+) ENGINE InnoDB;
 
 drop table if exists `tur_fav`;
 CREATE TABLE  tur_fav(
@@ -373,3 +375,88 @@ VALUES
 (1, 18, '北投溫泉博物館', '台北市北投區中山路2號', '溫泉文化', '2024-12-03', '2024-12-03 09:30:00', '2024-12-03 11:30:00', '00:30:00'),
 (1, 19, '大稻埕碼頭', '台北市大同區延平北路大稻埕', '景觀與午餐', '2024-12-03', '2024-12-03 12:00:00', '2024-12-03 14:00:00', '00:30:00'),
 (1, 20, '西門町', '台北市萬華區峨嵋街36號', '購物與娛樂', '2024-12-03', '2024-12-03 15:00:00', '2024-12-03 17:30:00', '00:30:00');
+
+INSERT INTO member (mem_email, mem_name, mem_pw, mem_sta) VALUES
+('user1@example.com', 'user1', 'password1', 1),
+('user2@example.com', 'user2', 'password2', 1),
+('user3@example.com', 'user3', 'password3', 1),
+('user4@example.com', 'user4', 'password4', 1),
+('user5@example.com', 'user5', 'password5', 1);
+
+INSERT INTO sched (
+    mem_no, sch_state, sch_name, sch_con, sch_start, sch_end, sch_cur, sch_pic, sch_last_edit
+) VALUES
+(1, 3, '台北之旅', '台灣', '2024-10-01', '2024-12-01', 'TWD', NULL, '2024-12-31 12:00:00'), -- 已結束
+(2, 1, '桃園悠遊', '台灣', '2024-12-20', '2025-02-15', 'TWD', NULL, '2024-12-31 12:00:00'), -- 正在進行
+(3, 2, '高雄假期', '台灣', '2025-03-05', '2025-03-10', 'TWD', NULL, '2024-12-31 12:00:00'), -- 暫不出發
+(4, 0, '台中探險', '台灣', '2025-04-20', '2025-04-25', 'TWD', NULL, '2024-12-31 12:00:00'), -- 尚未出發
+(5, 0, '台南之旅', '台灣', '2025-05-15', '2025-05-20', 'TWD', NULL, '2024-12-31 12:00:00'); -- 尚未出發
+
+INSERT INTO item (item_name, item_type) VALUES
+('自訂項目1', 0),
+('自訂項目2', 0),
+('自訂項目3', 0),
+('自訂項目4', 0),
+('T恤', 1),
+('牛仔褲', 1),
+('外套', 1),
+('夾克', 1),
+('長袖襯衫', 1),
+('手套', 1),
+('書包', 2),
+('墨鏡', 2),
+('鑰匙', 2),
+('耳機', 2),
+('筆記本', 2),
+('手提袋', 2),
+('口罩', 3),
+('指甲剪', 3),
+('梳子', 3),
+('保濕噴霧', 3),
+('香水', 3),
+('棉花棒', 3),
+('牙刷', 4),
+('牙膏', 4),
+('沐浴乳', 4),
+('洗面乳', 4),
+('潤唇膏', 4),
+('刮鬍刀', 4),
+('化妝水', 5),
+('乳液', 5),
+('粉底', 5),
+('腮紅', 5),
+('睫毛膏', 5),
+('卸妝油', 5),
+('筆電', 6),
+('手機', 6),
+('藍牙耳機', 6),
+('充電器', 6),
+('移動電源', 6),
+('相機', 6),
+('感冒藥', 7),
+('止痛藥', 7),
+('消毒酒精', 7),
+('腸胃藥', 7),
+('維他命', 7),
+('繃帶', 7),
+('護照', 8),
+('身份證', 8),
+('信用卡', 8),
+('機票', 8);
+
+INSERT INTO bag_list (bl_memno, bl_schno, bl_itemno, bl_ready) VALUES
+(1, 1, 10, true),
+(1, 1, 3, false),
+(1, 1, 25, true),
+(1, 1, 6, false),
+(1, 1, 47, true),
+(1, 1, 18, true),
+(1, 1, 32, false),
+(1, 1, 41, true),
+(1, 1, 8, false),
+(1, 1, 16, true),
+(1, 1, 2, false),
+(1, 1, 13, true),
+(1, 1, 28, false),
+(1, 1, 9, true),
+(1, 1, 34, false);
