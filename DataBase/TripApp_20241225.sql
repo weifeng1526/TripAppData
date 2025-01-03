@@ -350,7 +350,8 @@ INSERT INTO sched (
     mem_no, sch_state, sch_name, sch_con, sch_start, sch_end, sch_cur, sch_pic, sch_last_edit
 ) VALUES
 (1, 1, '台北之旅', '台灣', '2025-01-25', '2025-01-27', 'TWD', NULL, '2025-01-01 00:00:00'),
-(2, 1, '台中探險', '台灣', '2025-02-25', '2025-02-27', 'TWD', NULL, '2025-02-02 00:00:00');
+(2, 1, '台中探險', '台灣', '2025-02-25', '2025-02-27', 'TWD', NULL, '2025-02-02 00:00:00'),
+(3, 1, '花蓮露營', '台灣', '2024-12-05', '2024-12-07', 'TWD', NULL, '2024-11-30 00:00:00');
 
 -- 台中兩天一夜 (sch_no = 2)
 INSERT INTO dest (sch_no, poi_no, dst_name, dst_addr, dst_dep, dst_date, dst_start, dst_end, dst_inr)
