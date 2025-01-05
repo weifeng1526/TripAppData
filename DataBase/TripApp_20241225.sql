@@ -200,7 +200,7 @@ CREATE TABLE dst_record(
   cr_create_time datetime not NULL,
   cr_cost_loc varchar(20) DEFAULT NULL,
   cr_cost_pex boolean not null default false,
-  cr_cur varchar(10) not null,
+  cr_cur_record varchar(10) not null,
   PRIMARY KEY (cr_cost_no)
 ) ENGINE InnoDB; 
  
@@ -217,6 +217,7 @@ CREATE TABLE  payment(
   mem_no int NOT NULL,
   sch_no int NOT NULL,
   cr_total_sum decimal(10,2) not NULL,
+  cr_cur varchar(10) default null,
   PRIMARY KEY (mem_no,sch_no)
 ) ENGINE InnoDB; 
 
@@ -225,6 +226,7 @@ CREATE TABLE  deposit(
   dp_no int auto_increment NOT NULL,
   sch_no int NOT NULL,
   dp_record decimal(10,2) not NULL,
+  cr_cur_record varchar(10) not null,
   PRIMARY KEY (dp_no)
 ) ENGINE InnoDB; 
 --------------------------------------------------------------------------- 
@@ -451,17 +453,16 @@ INSERT INTO bag_list (bl_memno, bl_schno, bl_itemno, bl_ready) VALUES
 (1, 1, 34, false);
 
 INSERT INTO cost_recd (
-    cr_cost_no, sch_no, dst_no, cr_cost_type, cr_cost_item, cr_cost_price, cr_paid_by, cr_cost_time, cr_create_time, cr_cost_loc, cr_cost_pex, cr_cur
-) VALUES
+    cr_cost_no, sch_no, dst_no, cr_cost_type, cr_cost_item, cr_cost_price, cr_paid_by, cr_cost_time, cr_create_time, cr_cost_loc, cr_cost_pex, cr_cur_record) VALUES
     (1, 1, 1, 1, '午餐', 500, 1, '2023-11-20 12:00:00', '2023-11-20 12:01:00', '101', 0, 'TWD'),
     (2, 1, 2, 2, '地鐵', 200, 2, '2023-11-20 14:00:00', '2023-11-20 14:01:00', '台北車站', 1, 'TWD'),
     (3, 1, 1, 3, '兒童樂園門票', 2500, 1, '2023-11-21 10:00:00', '2023-11-21 09:59:00', '貓空纜車', 0, 'TWD'),
     (4, 1, 2, 4, '飯店住宿', 3000, 1, '2023-11-21 18:00:00', '2023-11-21 18:01:00', '深坑', 1, 'TWD'),
     (5, 1, 1, 5, '伴手禮', 1000, 1, '2023-11-22 15:00:00', '2023-11-22 15:01:00', '淡水', 0, 'TWD'),
-    (6, 2, 2, 6, '章魚燒', 300, 3, '2023-11-22 19:00:00', '2023-11-22 19:01:00', '道頓堀', 0, 'TWD'),
-    (7, 2, 1, 2, '電車', 150, 3, '2023-11-23 09:00:00', '2023-11-23 08:59:00', '天王寺', 1, 'TWD'),
-    (8, 2, 2, 4, '旅館住宿', 2500, 3, '2023-11-23 17:00:00', '2023-11-23 17:01:00', '新大阪', 0, 'TWD'),
-    (9, 2, 1, 1, '晚餐', 600, 4, '2023-11-24 18:00:00', '2023-11-24 18:01:00', '黑門市場', 1, 'TWD'),
+    (6, 2, 2, 6, '章魚燒', 300, 3, '2023-11-22 19:00:00', '2023-11-22 19:01:00', '道頓堀', 0, 'JPY'),
+    (7, 2, 1, 2, '電車', 150, 3, '2023-11-23 09:00:00', '2023-11-23 08:59:00', '天王寺', 1, 'JPY'),
+    (8, 2, 2, 4, '旅館住宿', 2500, 3, '2023-11-23 17:00:00', '2023-11-23 17:01:00', '新大阪', 0, 'JPY'),
+    (9, 2, 1, 1, '晚餐', 600, 4, '2023-11-24 18:00:00', '2023-11-24 18:01:00', '黑門市場', 1, 'JPY'),
     (10, 2, 2, 5, '藥妝', 800, 5, '2023-11-24 20:00:00', '2023-11-24 20:01:00', '心齋橋', 0, 'TWD'),
     (11, 2, 2, 5, '找鹿', 200, -1, '2023-11-24 21:00:00', '2023-11-24 21:01:00', '奈良', 0, 'TWD');
     
@@ -515,13 +516,13 @@ INSERT INTO PAYMENT (mem_no, sch_no, cr_total_sum) VALUES
     (4, 2, 600),
     (5, 2,  800);
     
-INSERT INTO DEPOSIT (sch_no, dp_no, dp_record) 
+INSERT INTO DEPOSIT (sch_no, dp_no, dp_record,cr_cur_record) 
 VALUES
-    (1, 1, 1000),
-    (1, 2, 2000),
-    (2, 3, 500),
-    (2, 4, 10000),
-    (2, 5,  2000);
+    (1, 1, 1000 ,'TWD'),
+    (1, 2, 2000,'TWD'),
+    (2, 3, 500,'TWD'),
+    (2, 4, 10000,'TWD'),
+    (2, 5,  2000,'TWD');
 
 INSERT INTO dest (sch_no, poi_no, dst_name, dst_addr, dst_dep, dst_date, dst_start, dst_end, dst_inr)
 VALUES
