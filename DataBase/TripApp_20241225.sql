@@ -103,16 +103,21 @@ CREATE TABLE  notify_type(
 ) ENGINE InnoDB; 
 
 -- --------------------------------------------------
-drop table if exists `ORDER`;
-CREATE TABLE  `ORDER`(
+drop table if exists `ORDERS`;
+CREATE TABLE  `ORDERS`(
   ord_no int AUTO_INCREMENT NOT NULL,
   mem_no int DEFAULT NULL,
   prod_no int DEFAULT NULL,
+  prod_name varchar(30) DEFAULT NULL,
+  prod_price int DEFAULT NULL,
   ord_dt datetime DEFAULT NULL,
-  ord_tot DECIMAL(10,2) DEFAULT NULL,
-  pay_sta tinyint DEFAULT NULL,
+  card_no varchar(16) DEFAULT NULL,
+  exp_date varchar(5) DEFAULT NULL,
+  cvv varchar(3) DEFAULT NULL,
+  is_Submitted boolean DEFAULT NULL,
+  prod_pic blob DEFAULT NULL,
   PRIMARY KEY (ord_no)
-) ENGINE InnoDB; 
+) ENGINE InnoDB;
 
 drop table if exists `product`;
 CREATE TABLE  product(
@@ -258,11 +263,11 @@ ADD CONSTRAINT notify_ntfrcv_FK FOREIGN KEY (ntf_rcv) REFERENCES member(mem_no);
 ALTER TABLE notify
 ADD CONSTRAINT notify_crewno_FK FOREIGN KEY (crew_no) REFERENCES crew(crew_no);
 -------------------------------------------------------------------------- 
-ALTER TABLE `ORDER`
-ADD CONSTRAINT ORDER_memno_FK FOREIGN KEY (mem_no) REFERENCES member(mem_no);
+ALTER TABLE `ORDERS`
+ADD CONSTRAINT ORDERS_memno_FK FOREIGN KEY (mem_no) REFERENCES member(mem_no);
 
-ALTER TABLE `ORDER`
-ADD CONSTRAINT ORDER_prodno_FK FOREIGN KEY (prod_no) REFERENCES product(prod_no);
+ALTER TABLE `ORDERS`
+ADD CONSTRAINT ORDERS_prodno_FK FOREIGN KEY (prod_no) REFERENCES product(prod_no);
 -------------------------------------------------------------------------- 
 ALTER TABLE sched
 ADD CONSTRAINT sched_memno_FK FOREIGN KEY (mem_no) REFERENCES member(mem_no);
