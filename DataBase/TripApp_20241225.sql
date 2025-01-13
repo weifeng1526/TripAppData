@@ -7,7 +7,7 @@ drop table if exists `payment`;
 drop table if exists `dst_record`;
 drop table if exists `dst_photo`;
 drop table if exists `dest`;
-drop table if exists `ORDER`;
+drop table if exists `orders`;
 drop table if exists `notify`;
  drop table if exists `poi_type`;
 drop table if exists `tur_fav`;
@@ -103,8 +103,8 @@ CREATE TABLE  notify_type(
 ) ENGINE InnoDB; 
 
 -- --------------------------------------------------
-drop table if exists `ORDERS`;
-CREATE TABLE  `ORDERS`(
+drop table if exists `orders`;
+CREATE TABLE  `orders`(
   ord_no int AUTO_INCREMENT NOT NULL,
   mem_no int DEFAULT NULL,
   prod_no int DEFAULT NULL,
@@ -263,11 +263,11 @@ ADD CONSTRAINT notify_ntfrcv_FK FOREIGN KEY (ntf_rcv) REFERENCES member(mem_no);
 ALTER TABLE notify
 ADD CONSTRAINT notify_crewno_FK FOREIGN KEY (crew_no) REFERENCES crew(crew_no);
 -------------------------------------------------------------------------- 
-ALTER TABLE `ORDERS`
-ADD CONSTRAINT ORDERS_memno_FK FOREIGN KEY (mem_no) REFERENCES member(mem_no);
+ALTER TABLE orders
+ADD CONSTRAINT orders_memno_FK FOREIGN KEY (mem_no) REFERENCES member(mem_no);
 
-ALTER TABLE `ORDERS`
-ADD CONSTRAINT ORDERS_prodno_FK FOREIGN KEY (prod_no) REFERENCES product(prod_no);
+ALTER TABLE orders
+ADD CONSTRAINT orders_prodno_FK FOREIGN KEY (prod_no) REFERENCES product(prod_no);
 -------------------------------------------------------------------------- 
 ALTER TABLE sched
 ADD CONSTRAINT sched_memno_FK FOREIGN KEY (mem_no) REFERENCES member(mem_no);
@@ -393,31 +393,41 @@ VALUES
 ( '台北市大同區延平北路大稻埕', '大稻埕碼頭', 121.512701, 25.057183, '景觀, 商圈', 'dadaocheng.jpg', 4.4, NULL, NULL, '00:00:00', '23:59:59', '古早風情與商圈', 1),
 ( '台北市萬華區峨嵋街36號', '西門町', 121.506498, 25.042141, '購物, 娛樂', 'ximen.jpg', 4.5, NULL, NULL, '00:00:00', '23:59:59', '台北熱鬧商圈', 1);
 
+-- INSERT INTO sched (
+--    sch_no, mem_no, sch_state, sch_name, sch_con, sch_start, sch_end, sch_cur, sch_pic, sch_last_edit
+-- ) VALUES
+-- (1, 1, 1, '台北之旅', '台灣', '2025-01-25', '2025-01-27', 'TWD', NULL, '2025-01-01 00:00:00'),
+-- (2, 1, 1, '日本東京', '日本', '2023-11-20', '2023-11-24', 'JPY', NULL, '2024-11-30 00:00:00'),
+-- (3, 1, 1, '台中探險', '台灣', '2025-02-25', '2025-02-27', 'TWD', NULL, '2025-02-02 00:00:00'),
+-- (4, 1, 1, '沖繩海灘陽光假期', '日本', '2025-01-01', '2025-01-01', 'JPY', NULL, '2025-01-01 00:00:00'),
+-- (5, 1, 1, '富士山健行挑戰', '日本', '2025-01-01', '2025-01-01', 'JPY', NULL, '2025-01-01 00:00:00'),
+-- (6, 1, 1, '名古屋主題樂園與購物', '日本', '2025-01-01', '2025-01-01', 'JPY', NULL, '2025-01-01 00:00:00'),
+-- (7, 1, 1, '奈良鹿與自然探索', '日本', '2025-01-01', '2025-01-01', 'JPY', NULL, '2025-01-01 00:00:00');
 INSERT INTO sched (
    sch_no, mem_no, sch_state, sch_name, sch_con, sch_start, sch_end, sch_cur, sch_pic, sch_last_edit
 ) VALUES
-(1, 1, 1, '台北之旅', '台灣', '2025-01-25', '2025-01-27', 'TWD', NULL, '2025-01-01 00:00:00'),
-(2, 1, 1, '日本東京', '日本', '2024-12-05', '2024-12-07', 'JPY', NULL, '2024-11-30 00:00:00'),
-(3, 1, 1, '台中探險', '台灣', '2025-02-25', '2025-02-27', 'TWD', NULL, '2025-02-02 00:00:00'),
-(4, 1, 1, '沖繩海灘陽光假期', '日本', '2025-01-01', '2025-01-01', 'JPY', NULL, '2025-01-01 00:00:00'),
-(5, 1, 1, '富士山健行挑戰', '日本', '2025-01-01', '2025-01-01', 'JPY', NULL, '2025-01-01 00:00:00'),
-(6, 1, 1, '名古屋主題樂園與購物', '日本', '2025-01-01', '2025-01-01', 'JPY', NULL, '2025-01-01 00:00:00'),
-(7, 1, 1, '奈良鹿與自然探索', '日本', '2025-01-01', '2025-01-01', 'JPY', NULL, '2025-01-01 00:00:00');
+(1, 1, 1, '台北之旅', '台灣', '2025-01-25', '2025-01-27', 'TWD', "C:\Users\TMP-214\Desktop\TripAppData\image\Taipei_Taipei-101.jpg", '2025-01-01 00:00:00'),
+(2, 1, 1, '日本東京', '日本', '2023-11-20', '2023-11-24', 'JPY', "C:\Users\TMP-214\Desktop\TripAppData\image\tokyo_sch.jpg", '2024-11-30 00:00:00'),
+(3, 1, 1, '台中探險', '台灣', '2025-02-25', '2025-02-27', 'TWD', "C:\Users\TMP-214\Desktop\TripAppData\image\taichung.jpg", '2025-02-02 00:00:00'),
+(4, 1, 1, '沖繩海灘陽光假期', '日本', '2025-01-01', '2025-01-01', 'JPY', "C:\Users\TMP-214\Desktop\TripAppData\image\okinawa.jpg", '2025-01-01 00:00:00'),
+(5, 1, 1, '富士山健行挑戰', '日本', '2025-01-01', '2025-01-01', 'JPY', "C:\Users\TMP-214\Desktop\TripAppData\image\fujiyama.jpg", '2025-01-01 00:00:00'),
+(6, 1, 1, '名古屋主題樂園與購物', '日本', '2025-01-01', '2025-01-01', 'JPY', "C:\Users\TMP-214\Desktop\TripAppData\image\Nagoya_Castle_Ticket.jpg", '2025-01-01 00:00:00'),
+(7, 1, 1, '奈良鹿與自然探索', '日本', '2025-01-01', '2025-01-01', 'JPY', "C:\Users\TMP-214\Desktop\TripAppData\image\deer-at-nara-koen-park-in-nara.jpg", '2025-01-01 00:00:00');
 
 -- 台北三天兩夜 (sch_no = 1)
-INSERT INTO dest (sch_no, poi_no, dst_name, dst_addr, dst_dep, dst_date, dst_start, dst_end, dst_inr)
+INSERT INTO dest (sch_no, poi_no, dst_name, dst_addr, dst_dep, dst_date, dst_start, dst_end, dst_inr,dst_pic)
 VALUES
-(1, 10, '台北101', '台北市信義區市府路45號', '地標景點', '2025-01-25', '2025-01-25 09:30:00', '2025-01-25 11:30:00', '00:30:00'),
-(1, 11, '象山', '台北市信義區松山路', '健行與拍照', '2025-01-25', '2025-01-25 12:00:00', '2025-01-25 13:30:00', '00:30:00'),
-(1, 12, '中正紀念堂', '台北市中正區中山南路21號', '歷史與文化', '2025-01-25', '2025-01-25 14:30:00', '2025-01-25 16:30:00', '00:30:00'),
-(1, 13, '士林夜市', '台北市士林區文林路', '美食與夜市文化', '2025-01-25', '2025-01-25 18:00:00', '2025-01-25 21:00:00', '01:00:00'),
-(1, 14, '陽明山國家公園', '台北市北投區竹子湖路1-20號', '自然景觀', '2025-01-26', '2025-01-26 08:00:00', '2025-01-26 10:30:00', '01:00:00'),
-(1, 15, '地熱谷', '台北市北投區中山路2號', '溫泉與拍照', '2025-01-26', '2025-01-26 11:30:00', '2025-01-26 13:00:00', '00:30:00'),
-(1, 16, '故宮博物院', '台北市士林區至善路二段221號', '文物欣賞', '2025-01-26', '2025-01-26 14:00:00', '2025-01-26 16:30:00', '00:30:00'),
-(1, 17, '士林官邸', '台北市士林區中山北路5段60號', '歷史與園藝', '2025-01-26', '2025-01-26 17:00:00', '2025-01-26 18:30:00', '00:30:00'),
-(1, 18, '北投溫泉博物館', '台北市北投區中山路2號', '溫泉文化', '2025-01-27', '2025-01-27 09:30:00', '2025-01-27 11:30:00', '00:30:00'),
-(1, 19, '大稻埕碼頭', '台北市大同區延平北路大稻埕', '景觀與午餐', '2025-01-27', '2025-01-27 12:00:00', '2025-01-27 14:00:00', '00:30:00'),
-(1, 20, '西門町', '台北市萬華區峨嵋街36號', '購物與娛樂', '2025-01-27', '2025-01-27 15:00:00', '2025-01-27 17:30:00', '00:30:00');
+(1, 10, '台北101', '台北市信義區市府路45號', '地標景點', '2025-01-25', '2025-01-25 09:30:00', '2025-01-25 11:30:00', '00:30:00',"C:\Users\TMP-214\Desktop\TripAppData\image\taipei101.jpg"),
+(1, 11, '象山', '台北市信義區松山路', '健行與拍照', '2025-01-25', '2025-01-25 12:00:00', '2025-01-25 13:30:00', '00:30:00',"C:\Users\TMP-214\Desktop\TripAppData\image\sheng_shan.jpg"),
+(1, 12, '中正紀念堂', '台北市中正區中山南路21號', '歷史與文化', '2025-01-25', '2025-01-25 14:30:00', '2025-01-25 16:30:00', '00:30:00',"C:\Users\TMP-214\Desktop\TripAppData\image\national_chiang_kai_shek_memoria_hall.jpg"),
+(1, 13, '士林夜市', '台北市士林區文林路', '美食與夜市文化', '2025-01-25', '2025-01-25 18:00:00', '2025-01-25 21:00:00', '01:00:00',"C:\Users\TMP-214\Desktop\TripAppData\image\40ya4.jpg"),
+(1, 14, '陽明山國家公園', '台北市北投區竹子湖路1-20號', '自然景觀', '2025-01-26', '2025-01-26 08:00:00', '2025-01-26 10:30:00', '01:00:00',"C:\Users\TMP-214\Desktop\TripAppData\image\yang_ming_shan.jpg"),
+(1, 15, '地熱谷', '台北市北投區中山路2號', '溫泉與拍照', '2025-01-26', '2025-01-26 11:30:00', '2025-01-26 13:00:00', '00:30:00',"C:\Users\TMP-214\Desktop\TripAppData\image\thermal_valley.jpg"),
+(1, 16, '故宮博物院', '台北市士林區至善路二段221號', '文物欣賞', '2025-01-26', '2025-01-26 14:00:00', '2025-01-26 16:30:00', '00:30:00',"C:\Users\TMP-214\Desktop\TripAppData\image\the_national_palace_museum.jpg"),
+(1, 17, '士林官邸', '台北市士林區中山北路5段60號', '歷史與園藝', '2025-01-26', '2025-01-26 17:00:00', '2025-01-26 18:30:00', '00:30:00',"C:\Users\TMP-214\Desktop\TripAppData\image\40_.jpg"),
+(1, 18, '北投溫泉博物館', '台北市北投區中山路2號', '溫泉文化', '2025-01-27', '2025-01-27 09:30:00', '2025-01-27 11:30:00', '00:30:00',"C:\Users\TMP-214\Desktop\TripAppData\image\beitou_hot_spring_museum.jpeg"),
+(1, 19, '大稻埕碼頭', '台北市大同區延平北路大稻埕', '景觀與午餐', '2025-01-27', '2025-01-27 12:00:00', '2025-01-27 14:00:00', '00:30:00',"C:\Users\TMP-214\Desktop\TripAppData\image\da_dao_cheng.jpg"),
+(1, 20, '西門町', '台北市萬華區峨嵋街36號', '購物與娛樂', '2025-01-27', '2025-01-27 15:00:00', '2025-01-27 17:30:00', '00:30:00',"C:\Users\TMP-214\Desktop\TripAppData\image\xi_men.jpg");
 
 -- 日本東京 (sch_no = 2)
 INSERT INTO dest (sch_no, poi_no, dst_name, dst_addr, dst_dep, dst_date, dst_start, dst_end, dst_inr)
@@ -596,18 +606,16 @@ VALUES
 -- ITEM物品清單 (總數60個)
 -- 衣物類別(1)
 INSERT INTO item (item_name, item_type) VALUES
-('短袖', 1),
+('上衣', 1),
 ('長褲', 1),
 ('外套', 1),
 ('鞋子', 1),
 ('襪子', 1),
 ('手套', 1),
 ('運動鞋', 1),
-('短袖上衣', 1),
 ('內衣', 1),
 ('內褲', 1),
 ('圍巾', 1),
-('項鍊', 1),
 -- 隨身用品類別(2)
 ('背包', 2),
 ('太陽眼鏡', 2),
@@ -615,14 +623,16 @@ INSERT INTO item (item_name, item_type) VALUES
 ('水壺', 2),
 ('手錶', 2),
 ('隱形眼鏡' , 2),
+('眼鏡盒', 2),
+('鑰匙', 2),
 -- 個人用品類別(3)
-('體香劑', 3),
 ('梳子', 3),
 ('手帕', 3),
-('護唇膏', 3),
 ('香水', 3),
 ('衛生紙', 3),
 ('濕紙巾', 3),
+('吹風機', 3),
+('筆',3),
 -- 洗漱用品類別(4)
 ('牙刷', 4),
 ('洗髮精', 4),
@@ -636,18 +646,22 @@ INSERT INTO item (item_name, item_type) VALUES
 -- 化妝保養品類別(5)
 ('乳液', 5),
 ('口紅', 5),
-('保濕乳', 5),
-('防曬乳液', 5),
+('化妝包', 5),
+('護手霜', 5),
+('防曬乳', 5),
 ('卸妝油', 5),
 ('化妝水', 5),
+('護唇膏', 5),
 
 -- 電子用品類別(6)
 ('手機', 6),
 ('充電線', 6),
-('平板電腦', 6),
+('平板', 6),
+('筆電', 6),
 ('插頭轉接器', 6),
 ('行動電源', 6),
 ('延長線', 6),
+('耳機', 6),
 
 -- 藥品類別(7)
 ('止痛藥', 7),
@@ -655,9 +669,11 @@ INSERT INTO item (item_name, item_type) VALUES
 ('ＯＫ蹦', 7),
 ('退燒藥', 7),
 ('胃藥', 7),
+('防蚊液', 7),
 
 -- 文件支付類類別(8)
 ('錢包', 8),
+('外幣',8),
 ('護照', 8),
 ('筆記本', 8),
 ('證件', 8),
