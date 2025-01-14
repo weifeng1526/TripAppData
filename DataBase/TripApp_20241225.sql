@@ -7,7 +7,7 @@ drop table if exists `payment`;
 drop table if exists `dst_record`;
 drop table if exists `dst_photo`;
 drop table if exists `dest`;
-drop table if exists `ORDER`;
+drop table if exists `orders`;
 drop table if exists `notify`;
  drop table if exists `poi_type`;
 drop table if exists `tur_fav`;
@@ -103,8 +103,8 @@ CREATE TABLE  notify_type(
 ) ENGINE InnoDB; 
 
 -- --------------------------------------------------
-drop table if exists `ORDERS`;
-CREATE TABLE  `ORDERS`(
+drop table if exists `orders`;
+CREATE TABLE  `orders`(
   ord_no int AUTO_INCREMENT NOT NULL,
   mem_no int DEFAULT NULL,
   prod_no int DEFAULT NULL,
@@ -263,11 +263,11 @@ ADD CONSTRAINT notify_ntfrcv_FK FOREIGN KEY (ntf_rcv) REFERENCES member(mem_no);
 ALTER TABLE notify
 ADD CONSTRAINT notify_crewno_FK FOREIGN KEY (crew_no) REFERENCES crew(crew_no);
 -------------------------------------------------------------------------- 
-ALTER TABLE `ORDERS`
-ADD CONSTRAINT ORDERS_memno_FK FOREIGN KEY (mem_no) REFERENCES member(mem_no);
+ALTER TABLE orders
+ADD CONSTRAINT orders_memno_FK FOREIGN KEY (mem_no) REFERENCES member(mem_no);
 
-ALTER TABLE `ORDERS`
-ADD CONSTRAINT ORDERS_prodno_FK FOREIGN KEY (prod_no) REFERENCES product(prod_no);
+ALTER TABLE orders
+ADD CONSTRAINT orders_prodno_FK FOREIGN KEY (prod_no) REFERENCES product(prod_no);
 -------------------------------------------------------------------------- 
 ALTER TABLE sched
 ADD CONSTRAINT sched_memno_FK FOREIGN KEY (mem_no) REFERENCES member(mem_no);
@@ -317,7 +317,7 @@ ADD CONSTRAINT deposit_schno_FK FOREIGN KEY (sch_no) REFERENCES sched (sch_no);
 
 -- 會員資料
 INSERT INTO member (mem_email, mem_name, mem_pw, mem_sta) VALUES
-('ruby@tip102.com', 'ruby', '111111', 1),
+('ruby@tip102.com', 'rubyyyyyer', '111111', 1),
 ('selin@tip102.com', 'sue', '222222', 1),
 ('aaron@tip102.com', 'aaron', '333333', 1),
 ('ashley@tip102.com', 'ashley', '444444', 1),
@@ -396,28 +396,28 @@ VALUES
 INSERT INTO sched (
    sch_no, mem_no, sch_state, sch_name, sch_con, sch_start, sch_end, sch_cur, sch_pic, sch_last_edit
 ) VALUES
-(1, 1, 1, '台北之旅', '台灣', '2025-01-25', '2025-01-27', 'TWD', NULL, '2025-01-01 00:00:00'),
-(2, 1, 1, '日本東京', '日本', '2024-12-05', '2024-12-07', 'JPY', NULL, '2024-11-30 00:00:00'),
-(3, 1, 1, '台中探險', '台灣', '2025-02-25', '2025-02-27', 'TWD', NULL, '2025-02-02 00:00:00'),
-(4, 1, 1, '沖繩海灘陽光假期', '日本', '2025-01-01', '2025-01-01', 'JPY', NULL, '2025-01-01 00:00:00'),
-(5, 1, 1, '富士山健行挑戰', '日本', '2025-01-01', '2025-01-01', 'JPY', NULL, '2025-01-01 00:00:00'),
-(6, 1, 1, '名古屋主題樂園與購物', '日本', '2025-01-01', '2025-01-01', 'JPY', NULL, '2025-01-01 00:00:00'),
-(7, 1, 1, '奈良鹿與自然探索', '日本', '2025-01-01', '2025-01-01', 'JPY', NULL, '2025-01-01 00:00:00');
+(1, 1, 1, '台北之旅', '台灣', '2025-01-25', '2025-01-27', 'TWD',null , '2025-01-01 00:00:00'),
+(2, 1, 1, '日本東京', '日本', '2023-11-20', '2023-11-24', 'JPY',null, '2024-11-30 00:00:00'),
+(3, 1, 1, '台中探險', '台灣', '2025-02-25', '2025-02-27', 'TWD', null, '2025-02-02 00:00:00'),
+(4, 1, 1, '沖繩海灘陽光假期', '日本', '2025-01-01', '2025-01-01', 'JPY', null, '2025-01-01 00:00:00'),
+(5, 1, 1, '富士山健行挑戰', '日本', '2025-01-01', '2025-01-01', 'JPY', null, '2025-01-01 00:00:00'),
+(6, 1, 1, '名古屋主題樂園與購物', '日本', '2025-01-01', '2025-01-01', 'JPY', null, '2025-01-01 00:00:00'),
+(7, 1, 1, '奈良鹿與自然探索', '日本', '2025-01-01', '2025-01-01', 'JPY', null, '2025-01-01 00:00:00');
 
 -- 台北三天兩夜 (sch_no = 1)
 INSERT INTO dest (sch_no, poi_no, dst_name, dst_addr, dst_dep, dst_date, dst_start, dst_end, dst_inr)
 VALUES
 (1, 10, '台北101', '台北市信義區市府路45號', '地標景點', '2025-01-25', '2025-01-25 09:30:00', '2025-01-25 11:30:00', '00:30:00'),
 (1, 11, '象山', '台北市信義區松山路', '健行與拍照', '2025-01-25', '2025-01-25 12:00:00', '2025-01-25 13:30:00', '00:30:00'),
-(1, 12, '中正紀念堂', '台北市中正區中山南路21號', '歷史與文化', '2025-01-25', '2025-01-25 14:30:00', '2025-01-25 16:30:00', '00:30:00'),
-(1, 13, '士林夜市', '台北市士林區文林路', '美食與夜市文化', '2025-01-25', '2025-01-25 18:00:00', '2025-01-25 21:00:00', '01:00:00'),
+(1, 12, '中正紀念堂', '台北市中正區中山南路21號', '歷史與文化', '2025-01-25', '2025-01-25 14:00:00', '2025-01-25 16:30:00', '00:30:00'),
+(1, 13, '士林夜市', '台北市士林區文林路', '美食與夜市文化', '2025-01-25', '2025-01-25 17:00:00', '2025-01-25 21:00:00', null),
 (1, 14, '陽明山國家公園', '台北市北投區竹子湖路1-20號', '自然景觀', '2025-01-26', '2025-01-26 08:00:00', '2025-01-26 10:30:00', '01:00:00'),
 (1, 15, '地熱谷', '台北市北投區中山路2號', '溫泉與拍照', '2025-01-26', '2025-01-26 11:30:00', '2025-01-26 13:00:00', '00:30:00'),
-(1, 16, '故宮博物院', '台北市士林區至善路二段221號', '文物欣賞', '2025-01-26', '2025-01-26 14:00:00', '2025-01-26 16:30:00', '00:30:00'),
-(1, 17, '士林官邸', '台北市士林區中山北路5段60號', '歷史與園藝', '2025-01-26', '2025-01-26 17:00:00', '2025-01-26 18:30:00', '00:30:00'),
+(1, 16, '故宮博物院', '台北市士林區至善路二段221號', '文物欣賞', '2025-01-26', '2025-01-26 13:30:00', '2025-01-26 16:30:00', '00:30:00'),
+(1, 17, '士林官邸', '台北市士林區中山北路5段60號', '歷史與園藝', '2025-01-26', '2025-01-26 17:00:00', '2025-01-26 18:30:00', null),
 (1, 18, '北投溫泉博物館', '台北市北投區中山路2號', '溫泉文化', '2025-01-27', '2025-01-27 09:30:00', '2025-01-27 11:30:00', '00:30:00'),
 (1, 19, '大稻埕碼頭', '台北市大同區延平北路大稻埕', '景觀與午餐', '2025-01-27', '2025-01-27 12:00:00', '2025-01-27 14:00:00', '00:30:00'),
-(1, 20, '西門町', '台北市萬華區峨嵋街36號', '購物與娛樂', '2025-01-27', '2025-01-27 15:00:00', '2025-01-27 17:30:00', '00:30:00');
+(1, 20, '西門町', '台北市萬華區峨嵋街36號', '購物與娛樂', '2025-01-27', '2025-01-27 14:30:00', '2025-01-27 17:30:00', null);
 
 -- 日本東京 (sch_no = 2)
 INSERT INTO dest (sch_no, poi_no, dst_name, dst_addr, dst_dep, dst_date, dst_start, dst_end, dst_inr)
@@ -461,7 +461,7 @@ VALUES
 
 -- 旅記
 INSERT INTO dst_record (mem_no, dst_no, dr_text) 
-VALUES (1 ,10 ,'101好高');
+VALUES (1 ,1 ,'101好高');
 
 -- 會員行程
 INSERT INTO sched (mem_no, sch_state, sch_name, sch_con, sch_start, sch_end, sch_cur, sch_pic, sch_last_edit)
@@ -524,13 +524,13 @@ INSERT INTO cost_recd (
     (3, 1, 3, '兒童樂園門票', 2500, 1, 'ruby', 'Dec 7, 2024', '貓空纜車', 0, 'TWD', 'TWD'),
     (4, 1, 4, '飯店住宿', 3000, 1, 'ruby', 'Dec 8, 2024', '深坑', 1, 'TWD', 'TWD'),
     (5, 1, 5, '伴手禮', 1000, 1, 'ruby', 'Dec 9, 2024', '淡水', 0, 'TWD', 'TWD'),
-    (6, 2, 6, '章魚燒', 300, 3, 'aaron', 'Dec 31, 2024', '道頓堀', 0, 'TWD', 'JPY'),
-    (7, 2, 2, '電車', 150, 3, 'aaron', 'Jan 2, 2025', '天王寺', 1, 'TWD', 'JPY'),
-    (8, 2, 4, '旅館住宿', 2500, 3, 'aaron', 'Jan 2, 2025', '新大阪', 0, 'TWD', 'JPY'),
-    (9, 2, 1, '晚餐', 600, 4, 'ashley', 'Jan 3, 2025', '黑門市場', 1, 'TWD', 'JPY'),
-    (10, 2, 5, '藥妝', 800, 1, 'ruby', 'Jan 5, 2025', '心齋橋', 0, 'TWD', 'TWD'),
-    (11, 2, 5, '找鹿', 200, 1, 'ruby', 'Jan 6, 2025', '奈良', 0, 'TWD', 'TWD'),
-    (12, 5, 5, '住宿', 3000, 1, 'ruby', 'Jan 7, 2025', '奈良', 0, 'TWD', 'JPY');
+    (6, 2, 6, '章魚燒', 300, 3, 'aaron', 'Dec 31, 2024', '道頓堀', 0, 'JPY', 'JPY'),
+    (7, 2, 2, '電車', 150, 3, 'aaron', 'Jan 2, 2025', '天王寺', 1, 'JPY', 'JPY'),
+    (8, 2, 4, '旅館住宿', 2500, 3, 'aaron', 'Jan 2, 2025', '新大阪', 0, 'JPY', 'JPY'),
+    (9, 2, 1, '晚餐', 600, 4, 'ashley', 'Jan 3, 2025', '黑門市場', 1, 'JPY', 'JPY'),
+    (10, 2, 5, '藥妝', 800, 1, 'ruby', 'Jan 5, 2025', '心齋橋', 0, 'JPY', 'JPY'),
+    (11, 2, 5, '找鹿', 200, 1, 'ruby', 'Jan 6, 2025', '奈良', 0, 'JPY', 'JPY'),
+    (12, 5, 5, '住宿', 3000, 1, 'ruby', 'Jan 7, 2025', '奈良', 0, 'JPY', 'JPY');
     
 -- 統計結果   
 INSERT INTO BALANCE (cost_no, sch_no, mem_no, cr_cost_splip) VALUES
@@ -596,18 +596,16 @@ VALUES
 -- ITEM物品清單 (總數60個)
 -- 衣物類別(1)
 INSERT INTO item (item_name, item_type) VALUES
-('短袖', 1),
+('上衣', 1),
 ('長褲', 1),
 ('外套', 1),
 ('鞋子', 1),
 ('襪子', 1),
 ('手套', 1),
 ('運動鞋', 1),
-('短袖上衣', 1),
 ('內衣', 1),
 ('內褲', 1),
 ('圍巾', 1),
-('項鍊', 1),
 -- 隨身用品類別(2)
 ('背包', 2),
 ('太陽眼鏡', 2),
@@ -615,14 +613,16 @@ INSERT INTO item (item_name, item_type) VALUES
 ('水壺', 2),
 ('手錶', 2),
 ('隱形眼鏡' , 2),
+('眼鏡盒', 2),
+('鑰匙', 2),
 -- 個人用品類別(3)
-('體香劑', 3),
 ('梳子', 3),
 ('手帕', 3),
-('護唇膏', 3),
 ('香水', 3),
 ('衛生紙', 3),
 ('濕紙巾', 3),
+('吹風機', 3),
+('筆',3),
 -- 洗漱用品類別(4)
 ('牙刷', 4),
 ('洗髮精', 4),
@@ -636,18 +636,22 @@ INSERT INTO item (item_name, item_type) VALUES
 -- 化妝保養品類別(5)
 ('乳液', 5),
 ('口紅', 5),
-('保濕乳', 5),
-('防曬乳液', 5),
+('化妝包', 5),
+('護手霜', 5),
+('防曬乳', 5),
 ('卸妝油', 5),
 ('化妝水', 5),
+('護唇膏', 5),
 
 -- 電子用品類別(6)
 ('手機', 6),
 ('充電線', 6),
-('平板電腦', 6),
+('平板', 6),
+('筆電', 6),
 ('插頭轉接器', 6),
 ('行動電源', 6),
 ('延長線', 6),
+('耳機', 6),
 
 -- 藥品類別(7)
 ('止痛藥', 7),
@@ -655,9 +659,11 @@ INSERT INTO item (item_name, item_type) VALUES
 ('ＯＫ蹦', 7),
 ('退燒藥', 7),
 ('胃藥', 7),
+('防蚊液', 7),
 
 -- 文件支付類類別(8)
 ('錢包', 8),
+('外幣',8),
 ('護照', 8),
 ('筆記本', 8),
 ('證件', 8),
@@ -725,7 +731,6 @@ INSERT INTO bag_list (bl_memno, bl_schno, bl_itemno, bl_ready) VALUES
 (1, 3, 40, 1),  -- 防曬乳液
 (1, 3, 42, 0),  -- 防水袋
 (1, 3, 44, 1),  -- 行動電源
-
 
 (1, 4, 5, 1),   -- 背包
 (1, 4, 8, 0),   -- 手套
@@ -819,3 +824,13 @@ INSERT INTO bag_list (bl_memno, bl_schno, bl_itemno, bl_ready) VALUES
 (1, 7, 46, 0),  -- 旅行水壺
 (1, 7, 48, 1),  -- 防曬乳液
 (1, 7, 50, 0);  -- 充電線
+
+INSERT INTO product 
+(prod_no, prod_name, prod_desc, prod_price, prod_sta, prod_pic) 
+VALUES
+(1, '日本東京迪士尼五日遊', '玩瘋東京迪士尼．箱根蘆之湖．橫濱纜車', 36888, '0', 'https://res.klook.com/image/upload/q_85/c_fill,w_563/activities/aetyjas9q4xb8bnc94zr.jpg'),
+(2, '台中(武陵/新社/谷關', '春櫻雪滿山、福壽山千櫻園、武陵北谷、梨山最高宮殿', 5688, '0', 'https://photo.settour.com.tw/900x600/https://www.settour.com.tw/ss_img/info/location/TXG/G0/TXG0000208/TXG0000208_131387.jpg'),
+(3, '韓國首爾賞櫻五日行', '濟扶島海上纜車、愛寶樂園、威尼斯月亮船、星光庭園', 32888, '0', 'https://photo.settour.com.tw/https://www.settour.com.tw/ss_img/info/location/ICN/N0/ICN0000339/ICN0000339_37799.jpg'),
+(4, '台北兩天一夜', '台北熱門景點遊覽與美食饗宴', 2688, '0', 'https://madisontaipei.com/wp-content/uploads/2016/11/02.jpg'),
+(5, '台中兩天一夜', '台中知名美食與景點遊覽', 1688, '0', 'https://zh-tw.skyticket.com/guide/wp-content/uploads/2021/02/shutterstock_1629189772.jpg'),
+(6, '台南三天兩夜', '台南古蹟巡禮與小吃美食遊覽', 2888, '0', 'https://cc.tvbs.com.tw/img/program/upload/2021/09/16/20210916101332-4a326f6e.jpg');
