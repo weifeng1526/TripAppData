@@ -38,7 +38,7 @@ CREATE TABLE `cost_recd` (
   PRIMARY KEY (`cr_cost_no`),
   KEY `costrecd_schno_FK` (`sch_no`),
   CONSTRAINT `costrecd_schno_FK` FOREIGN KEY (`sch_no`) REFERENCES `sched` (`sch_no`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,7 +47,7 @@ CREATE TABLE `cost_recd` (
 
 LOCK TABLES `cost_recd` WRITE;
 /*!40000 ALTER TABLE `cost_recd` DISABLE KEYS */;
-INSERT INTO `cost_recd` VALUES (1,1,1,'午餐',500.00,1,'ruby','Dec 5, 2024','101',0,'TWD','TWD'),(2,1,2,'地鐵',200.00,2,'sue','Dec 7, 2024','台北車站',1,'TWD','TWD'),(3,1,3,'兒童樂園門票',2500.00,1,'ruby','Dec 7, 2024','貓空纜車',0,'TWD','TWD'),(4,1,4,'飯店住宿',3000.00,1,'ruby','Dec 8, 2024','深坑',1,'TWD','TWD'),(5,1,5,'伴手禮',1000.00,1,'ruby','Dec 9, 2024','淡水',0,'TWD','TWD'),(6,2,6,'章魚燒',300.00,3,'aaron','Dec 31, 2024','道頓堀',0,'JPY','JPY'),(7,2,2,'電車',150.00,3,'aaron','Jan 2, 2025','天王寺',1,'JPY','JPY'),(8,2,4,'旅館住宿',2500.00,3,'aaron','Jan 2, 2025','新大阪',0,'JPY','JPY'),(9,2,1,'晚餐',600.00,4,'ashley','Jan 3, 2025','黑門市場',1,'JPY','JPY'),(10,2,5,'藥妝',800.00,1,'ruby','Jan 5, 2025','心齋橋',0,'JPY','JPY'),(11,2,5,'找鹿',200.00,1,'ruby','Jan 6, 2025','奈良',0,'JPY','JPY'),(12,5,5,'住宿',3000.00,1,'ruby','Jan 7, 2025','奈良',0,'JPY','JPY');
+INSERT INTO `cost_recd` VALUES (1,1,1,'午餐',500.00,1,'rubyyyyyer','Dec 5, 2024','101',0,'TWD','TWD'),(2,1,2,'地鐵',200.00,2,'sue','Dec 7, 2024','台北車站',1,'TWD','TWD'),(3,1,3,'兒童樂園門票',2500.00,1,'rubyyyyyer','Dec 7, 2024','貓空纜車',0,'TWD','TWD'),(4,1,4,'飯店住宿',3000.00,1,'rubyyyyyer','Dec 8, 2024','深坑',1,'TWD','TWD'),(5,1,5,'伴手禮',1000.00,1,'rubyyyyyer','Dec 9, 2024','淡水',0,'TWD','TWD'),(6,1,5,'明信片*10',200.00,1,'rubyyyyyer','Dec 9, 2024','淡水',0,'TWD','TWD'),(7,1,5,'磁鐵*10',500.00,1,'rubyyyyyer','Dec 9, 2024','淡水',0,'TWD','TWD'),(8,1,1,'阿給',4800.00,1,'sue','Dec 9, 2024','淡水',0,'TWD','TWD'),(9,2,1,'章魚燒',300.00,3,'aaron','Dec 31, 2024','道頓堀',0,'JPY','JPY'),(10,2,2,'電車',150.00,3,'aaron','Jan 2, 2025','天王寺',1,'JPY','JPY'),(11,2,4,'旅館住宿',2500.00,3,'aaron','Jan 2, 2025','新大阪',0,'JPY','JPY'),(12,2,1,'晚餐',600.00,4,'ashley','Jan 3, 2025','黑門市場',1,'JPY','JPY'),(13,2,5,'藥妝',800.00,1,'rubyyyyyer','Jan 5, 2025','心齋橋',0,'JPY','JPY'),(14,2,6,'買鹿的餅乾',200.00,1,'rubyyyyyer','Jan 6, 2025','奈良',0,'JPY','JPY'),(15,5,4,'住宿',3000.00,1,'rubyyyyyer','Jan 7, 2025','奈良',0,'JPY','JPY'),(16,5,5,'磁鐵',80.00,1,'rubyyyyyer','Jan 7, 2025','奈良',0,'JPY','JPY');
 /*!40000 ALTER TABLE `cost_recd` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -60,4 +60,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-01-15  0:04:03
+-- Dump completed on 2025-01-16 14:20:09
