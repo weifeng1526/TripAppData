@@ -32,7 +32,7 @@ CREATE TABLE `dst_record` (
   KEY `dstrecord_memno_FK` (`mem_no`),
   CONSTRAINT `dstrecord_dstno_FK` FOREIGN KEY (`dst_no`) REFERENCES `dest` (`dst_no`),
   CONSTRAINT `dstrecord_memno_FK` FOREIGN KEY (`mem_no`) REFERENCES `member` (`mem_no`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,7 @@ CREATE TABLE `dst_record` (
 
 LOCK TABLES `dst_record` WRITE;
 /*!40000 ALTER TABLE `dst_record` DISABLE KEYS */;
-INSERT INTO `dst_record` VALUES (1,1,1,'101好高'),(2,1,46,NULL),(3,1,41,NULL),(4,1,2,NULL),(5,1,4,NULL),(6,1,42,'\n'),(7,1,44,NULL),(8,1,48,NULL),(9,1,61,NULL),(10,1,43,NULL);
+INSERT INTO `dst_record` VALUES (1,1,1,'101好高'),(3,1,41,'章魚燒好吃，衣服都各有特色，商店的規劃優秀，逛起來很方便'),(4,1,2,NULL),(5,1,4,NULL),(6,1,42,'\n'),(7,1,44,NULL),(8,1,48,NULL),(9,1,61,NULL),(10,1,43,NULL),(11,1,45,NULL),(12,1,51,NULL),(13,1,46,NULL);
 /*!40000 ALTER TABLE `dst_record` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-01-16 14:20:09
+-- Dump completed on 2025-01-16 15:43:35
