@@ -519,18 +519,22 @@ INSERT INTO crew (sch_no, mem_no, crew_peri, crew_ide, crew_name, crew_invited) 
 -- 消費紀錄
 INSERT INTO cost_recd (
     cr_cost_no, sch_no, cr_cost_type, cr_cost_item, cr_cost_price, cr_paid_by, cr_paid_by_name, cr_cost_time, cr_cost_loc, cr_cost_pex, cr_cur, cr_cur_record) VALUES
-    (1, 1, 1, '午餐', 500, 1, 'ruby', 'Dec 5, 2024', '101', 0, 'TWD', 'TWD'),
+    (1, 1, 1, '午餐', 500, 1, 'rubyyyyyer', 'Dec 5, 2024', '101', 0, 'TWD', 'TWD'),
     (2, 1, 2, '地鐵', 200, 2, 'sue', 'Dec 7, 2024', '台北車站', 1, 'TWD', 'TWD'),
-    (3, 1, 3, '兒童樂園門票', 2500, 1, 'ruby', 'Dec 7, 2024', '貓空纜車', 0, 'TWD', 'TWD'),
-    (4, 1, 4, '飯店住宿', 3000, 1, 'ruby', 'Dec 8, 2024', '深坑', 1, 'TWD', 'TWD'),
-    (5, 1, 5, '伴手禮', 1000, 1, 'ruby', 'Dec 9, 2024', '淡水', 0, 'TWD', 'TWD'),
-    (6, 2, 6, '章魚燒', 300, 3, 'aaron', 'Dec 31, 2024', '道頓堀', 0, 'JPY', 'JPY'),
-    (7, 2, 2, '電車', 150, 3, 'aaron', 'Jan 2, 2025', '天王寺', 1, 'JPY', 'JPY'),
-    (8, 2, 4, '旅館住宿', 2500, 3, 'aaron', 'Jan 2, 2025', '新大阪', 0, 'JPY', 'JPY'),
-    (9, 2, 1, '晚餐', 600, 4, 'ashley', 'Jan 3, 2025', '黑門市場', 1, 'JPY', 'JPY'),
-    (10, 2, 5, '藥妝', 800, 1, 'ruby', 'Jan 5, 2025', '心齋橋', 0, 'JPY', 'JPY'),
-    (11, 2, 5, '找鹿', 200, 1, 'ruby', 'Jan 6, 2025', '奈良', 0, 'JPY', 'JPY'),
-    (12, 5, 5, '住宿', 3000, 1, 'ruby', 'Jan 7, 2025', '奈良', 0, 'JPY', 'JPY');
+    (3, 1, 3, '兒童樂園門票', 2500, 1, 'rubyyyyyer', 'Dec 7, 2024', '貓空纜車', 0, 'TWD', 'TWD'),
+    (4, 1, 4, '飯店住宿', 3000, 1, 'rubyyyyyer', 'Dec 8, 2024', '深坑', 1, 'TWD', 'TWD'),
+    (5, 1, 5, '伴手禮', 1000, 1, 'rubyyyyyer', 'Dec 9, 2024', '淡水', 0, 'TWD', 'TWD'),
+    (6, 1, 5, '明信片*10', 200, 1, 'rubyyyyyer', 'Dec 9, 2024', '淡水', 0, 'TWD', 'TWD'),    
+    (7, 1, 5, '磁鐵*10', 500, 1, 'rubyyyyyer', 'Dec 9, 2024', '淡水', 0, 'TWD', 'TWD'),
+    (8, 1, 1, '阿給', 4800, 1, 'sue', 'Dec 9, 2024', '淡水', 0, 'TWD', 'TWD'),    
+    (9, 2, 1, '章魚燒', 300, 3, 'aaron', 'Dec 31, 2024', '道頓堀', 0, 'JPY', 'JPY'),
+    (10, 2, 2, '電車', 150, 3, 'aaron', 'Jan 2, 2025', '天王寺', 1, 'JPY', 'JPY'),
+    (11, 2, 4, '旅館住宿', 2500, 3, 'aaron', 'Jan 2, 2025', '新大阪', 0, 'JPY', 'JPY'),
+    (12, 2, 1, '晚餐', 600, 4, 'ashley', 'Jan 3, 2025', '黑門市場', 1, 'JPY', 'JPY'),
+    (13, 2, 5, '藥妝', 800, 1, 'rubyyyyyer', 'Jan 5, 2025', '心齋橋', 0, 'JPY', 'JPY'),
+    (14, 2, 6, '買鹿的餅乾', 200, 1, 'rubyyyyyer', 'Jan 6, 2025', '奈良', 0, 'JPY', 'JPY'),
+    (15, 5, 4, '住宿', 3000, 1, 'rubyyyyyer', 'Jan 7, 2025', '奈良', 0, 'JPY', 'JPY'),
+    (16, 5, 5, '磁鐵', 80, 1, 'rubyyyyyer', 'Jan 7, 2025', '奈良', 0, 'JPY', 'JPY');
     
 -- 統計結果   
 INSERT INTO BALANCE (cost_no, sch_no, mem_no, cr_cost_splip) VALUES
