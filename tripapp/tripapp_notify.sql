@@ -31,15 +31,7 @@ CREATE TABLE `notify` (
   `ntf_time` datetime DEFAULT NULL,
   `ntf_read` tinyint(1) DEFAULT NULL,
   `crew_no` int NOT NULL,
-  PRIMARY KEY (`ntf_no`),
-  KEY `notify_nttpno_FK` (`nttp_no`),
-  KEY `notify_ntfsdr_FK` (`ntf_sdr`),
-  KEY `notify_ntfrcv_FK` (`ntf_rcv`),
-  KEY `notify_crewno_FK` (`crew_no`),
-  CONSTRAINT `notify_crewno_FK` FOREIGN KEY (`crew_no`) REFERENCES `crew` (`crew_no`),
-  CONSTRAINT `notify_ntfrcv_FK` FOREIGN KEY (`ntf_rcv`) REFERENCES `member` (`mem_no`),
-  CONSTRAINT `notify_ntfsdr_FK` FOREIGN KEY (`ntf_sdr`) REFERENCES `member` (`mem_no`),
-  CONSTRAINT `notify_nttpno_FK` FOREIGN KEY (`nttp_no`) REFERENCES `notify_type` (`nttp_no`)
+  PRIMARY KEY (`ntf_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -61,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-01-16 21:49:05
+-- Dump completed on 2025-01-17 10:57:59

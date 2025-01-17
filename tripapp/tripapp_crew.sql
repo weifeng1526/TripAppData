@@ -30,12 +30,8 @@ CREATE TABLE `crew` (
   `crew_ide` tinyint DEFAULT NULL,
   `crew_name` varchar(10) DEFAULT NULL,
   `crew_invited` tinyint DEFAULT '0',
-  PRIMARY KEY (`crew_no`),
-  KEY `crew_schno_FK` (`sch_no`),
-  KEY `crew_memno_FK` (`mem_no`),
-  CONSTRAINT `crew_memno_FK` FOREIGN KEY (`mem_no`) REFERENCES `member` (`mem_no`),
-  CONSTRAINT `crew_schno_FK` FOREIGN KEY (`sch_no`) REFERENCES `sched` (`sch_no`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`crew_no`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,7 +40,7 @@ CREATE TABLE `crew` (
 
 LOCK TABLES `crew` WRITE;
 /*!40000 ALTER TABLE `crew` DISABLE KEYS */;
-INSERT INTO `crew` VALUES (1,1,1,1,1,'台北之旅',3),(2,1,2,2,2,'台北之旅',3),(3,2,1,2,2,'日本東京',3),(4,2,3,1,1,'日本東京',3),(5,2,4,1,1,'日本東京',3),(6,3,5,2,2,'台中探險',3),(7,3,1,1,1,'台中探險',3),(8,4,6,2,1,'東京美食之旅',3),(9,4,8,2,1,'東京美食之旅',3),(10,5,1,1,2,'大阪之旅',3);
+INSERT INTO `crew` VALUES (1,1,1,2,2,'台北之旅',3),(2,1,2,1,1,'台北之旅',3),(3,2,1,2,2,'日本東京',3),(4,2,3,1,1,'日本東京',3),(5,2,4,1,1,'日本東京',3),(6,3,1,2,2,'台中探險',3),(7,3,5,1,1,'台中探險',3),(8,4,1,2,2,'沖繩海灘陽光假期',3),(9,5,1,2,2,'富士山健行挑戰',3),(10,6,1,2,2,'名古屋主題樂園與購物',3),(11,7,1,2,2,'奈良鹿與自然探索',3),(12,8,5,2,2,'台南古城美食之旅',3),(13,8,1,1,1,'台南古城美食之旅',3),(14,8,2,1,1,'台南古城美食之旅',3),(15,8,3,1,1,'台南古城美食之旅',3),(16,8,4,1,1,'台南古城美食之旅',3),(17,8,6,1,1,'台南古城美食之旅',3),(18,8,7,1,1,'台南古城美食之旅',3);
 /*!40000 ALTER TABLE `crew` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -57,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-01-16 21:49:03
+-- Dump completed on 2025-01-17 10:58:00
