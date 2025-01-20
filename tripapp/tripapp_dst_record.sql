@@ -32,7 +32,7 @@ CREATE TABLE `dst_record` (
   KEY `dstrecord_memno_FK` (`mem_no`),
   CONSTRAINT `dstrecord_dstno_FK` FOREIGN KEY (`dst_no`) REFERENCES `dest` (`dst_no`),
   CONSTRAINT `dstrecord_memno_FK` FOREIGN KEY (`mem_no`) REFERENCES `member` (`mem_no`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,7 @@ CREATE TABLE `dst_record` (
 
 LOCK TABLES `dst_record` WRITE;
 /*!40000 ALTER TABLE `dst_record` DISABLE KEYS */;
-INSERT INTO `dst_record` VALUES (1,1,1,'101好高'),(3,1,41,'章魚燒好吃，衣服都各有特色，商店的規劃優秀，逛起來很方便');
+INSERT INTO `dst_record` VALUES (1,1,1,'101好高'),(3,1,41,'章魚燒好吃，衣服都各有特色，商店的規劃優秀，逛起來很方便'),(17,1,42,'	so fast'),(18,1,43,NULL),(19,1,53,NULL);
 /*!40000 ALTER TABLE `dst_record` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-01-17 12:02:02
+-- Dump completed on 2025-01-20 19:44:36
